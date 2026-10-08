@@ -1,0 +1,13 @@
+TEAM
+RA Fahim — Web Developer & Creator
+Website: https://rafahim.com
+Email: dev@rafahim.com
+Location: Dhaka, Bangladesh
+
+SITE
+Markdown Resume Builder
+Purpose: Markdown-to-CV editor with local autosave and native PDF printing
+Stack: HTML5, CSS3, Vanilla JavaScript, marked.js
+
+STANDARDS
+Semantic HTML, responsive CSS, browser-native storage, browser-native print-to-PDF

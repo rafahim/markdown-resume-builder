@@ -1,0 +1,11 @@
+{
+  "name":"Markdown Resume Builder",
+  "short_name":"Resume Builder",
+  "description":"Write a CV in Markdown and export an ATS-friendly PDF in your browser.",
+  "start_url":"/resume-builder/",
+  "scope":"/resume-builder/",
+  "display":"standalone",
+  "background_color":"#f4f7fb",
+  "theme_color":"#2563eb",
+  "icons":[{"src":"favicon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

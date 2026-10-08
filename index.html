@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Markdown Resume Builder — Free Online CV Maker (ATS-Friendly) | RA Fahim</title>
+  <meta name="description" content="Write your CV in Markdown and export a clean ATS-friendly PDF with five professional templates. Free, private, and runs in your browser.">
+  <meta name="keywords" content="markdown resume, free resume builder, cv maker online, ats resume, markdown cv">
+  <meta name="author" content="RA Fahim">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://rafahim.com/resume-builder/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Markdown Resume Builder — Free Online CV Maker (ATS-Friendly) | RA Fahim">
+  <meta property="og:description" content="Write your CV in Markdown, preview it on A4 paper, and print to a polished ATS-friendly PDF.">
+  <meta property="og:url" content="https://rafahim.com/resume-builder/">
+  <meta property="og:image" content="https://rafahim.com/resume-builder/og-image.svg">
+  <meta property="og:site_name" content="RA Fahim">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Markdown Resume Builder — Free Online CV Maker (ATS-Friendly) | RA Fahim">
+  <meta name="twitter:description" content="A private browser-based Markdown CV maker with five templates and PDF export.">
+  <meta name="twitter:image" content="https://rafahim.com/resume-builder/og-image.svg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="templates/classic.css">
+  <link rel="stylesheet" href="templates/modern.css">
+  <link rel="stylesheet" href="templates/minimal.css">
+  <link rel="stylesheet" href="templates/twocolumn.css">
+  <link rel="stylesheet" href="templates/developer.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+  <script defer src="script.js"></script>
+  <script type="application/ld+json">{
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":"WebApplication","name":"Markdown Resume Builder","url":"https://rafahim.com/resume-builder/","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"JavaScript enabled","description":"Free browser-based Markdown resume builder with ATS-friendly PDF printing and professional CV templates.","author":{"@id":"https://rafahim.com/#person"}},
+      {"@type":"Person","@id":"https://rafahim.com/#person","name":"RA Fahim","url":"https://rafahim.com","jobTitle":"Web Developer & Creator","homeLocation":{"@type":"Place","name":"Dhaka, Bangladesh"},"sameAs":["https://github.com/rafahim","https://twitter.com/rafahimn","https://www.linkedin.com/in/rafahimn"]}
+    ]
+  }</script>
+</head>
+<body data-theme="light">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <a class="brand-mark" href="https://rafahim.com" aria-label="RA Fahim">RA</a>
+        <div>
+          <h1 data-i18n="appTitle">Markdown Resume Builder</h1>
+          <p data-i18n="appSubtitle">Write in Markdown. Preview A4. Export PDF.</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode">◐</button>
+        <button class="icon-btn" id="languageToggle" type="button" aria-label="Switch language">বাংলা</button>
+        <button class="primary-btn" id="printBtn" type="button" data-i18n="exportPdf">Export PDF</button>
+      </div>
+    </header>
+
+    <section class="toolbar" aria-label="Editor tools">
+      <div class="tool-group">
+        <button class="tool-btn" data-action="bold" type="button" title="Bold">B</button>
+        <button class="tool-btn" data-action="italic" type="button" title="Italic"><em>I</em></button>
+        <button class="tool-btn" data-action="heading" type="button" title="Heading">H</button>
+        <button class="tool-btn" data-action="link" type="button" title="Link">↗</button>
+        <button class="tool-btn" data-action="bullet" type="button" title="Bullet list">•</button>
+        <button class="tool-btn" data-action="numbered" type="button" title="Numbered list">1.</button>
+        <button class="tool-btn" data-action="quote" type="button" title="Quote">❝</button>
+        <button class="tool-btn" data-action="code" type="button" title="Code">&lt;/&gt;</button>
+      </div>
+      <div class="tool-group">
+        <label class="select-wrap"><span data-i18n="template">Template</span><select id="templateSelect"><option value="classic">Classic</option><option value="modern">Modern</option><option value="minimal">Minimal</option><option value="twocolumn">Two-column</option><option value="developer">Developer</option></select></label>
+        <label class="select-wrap"><span data-i18n="zoom">Zoom</span><select id="zoomSelect"><option value="0.5">50%</option><option value="0.75">75%</option><option value="0.9" selected>90%</option><option value="1">100%</option><option value="1.25">125%</option><option value="1.5">150%</option><option value="2">200%</option></select></label>
+      </div>
+    </section>
+
+    <main class="workspace">
+      <section class="editor-panel panel">
+        <div class="panel-head">
+          <div>
+            <span class="eyebrow" data-i18n="editor">EDITOR</span>
+            <span class="status-dot" id="saveStatus">Saved locally</span>
+          </div>
+          <div class="panel-actions">
+            <button class="ghost-btn" id="importMdBtn" type="button" data-i18n="importMd">Import .md</button>
+            <button class="ghost-btn" id="loadExampleBtn" type="button" data-i18n="example">Example</button>
+            <button class="ghost-btn" id="historyBtn" type="button" data-i18n="history">History</button>
+            <input id="mdFileInput" type="file" accept=".md,.markdown,text/markdown" hidden>
+          </div>
+        </div>
+        <div class="editor-wrap">
+          <pre class="code-layer" aria-hidden="true"><code id="highlightLayer"></code></pre>
+          <textarea id="markdownEditor" spellcheck="false" aria-label="Markdown resume editor"></textarea>
+        </div>
+        <div class="editor-footer">
+          <span id="wordStats">0 words · 0 characters</span>
+          <span>Ctrl+B · Ctrl+I · Ctrl+S</span>
+        </div>
+      </section>
+
+      <section class="preview-panel panel">
+        <div class="panel-head">
+          <div>
+            <span class="eyebrow" data-i18n="preview">PREVIEW</span>
+            <span id="paperSize">A4 · 210 × 297 mm</span>
+          </div>
+          <div class="panel-actions">
+            <button class="ghost-btn" id="exportJsonBtn" type="button" data-i18n="exportJson">Export .json</button>
+            <button class="ghost-btn" id="importJsonBtn" type="button" data-i18n="importJson">Import .json</button>
+            <button class="ghost-btn" id="customCssBtn" type="button" data-i18n="customCss">Custom CSS</button>
+            <input id="jsonFileInput" type="file" accept=".json,application/json" hidden>
+          </div>
+        </div>
+        <div class="preview-stage" id="previewStage">
+          <article class="resume-paper template-classic" id="resumePaper">
+            <div class="resume-content" id="resumeContent"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <section class="settings-bar" aria-label="Design controls">
+      <div class="setting-card"><label for="fontSelect" data-i18n="font">Font</label><select id="fontSelect"><option value="Inter,system-ui,sans-serif">Inter</option><option value="Arial,Helvetica,sans-serif">Arial</option><option value="Georgia,serif">Georgia</option><option value="Verdana,Arial,sans-serif">Verdana</option><option value="'Courier New',monospace">Courier</option></select></div>
+      <div class="setting-card"><label for="accentColor" data-i18n="accent">Accent</label><input id="accentColor" type="color" value="#2563eb"></div>
+      <div class="setting-card"><label for="textColor" data-i18n="textColor">Text</label><input id="textColor" type="color" value="#111827"></div>
+      <div class="setting-card"><label for="spacingRange" data-i18n="spacing">Spacing</label><input id="spacingRange" type="range" min="0.65" max="1.5" value="1" step="0.05"></div>
+      <div class="setting-card custom-css-status"><span data-i18n="privacy">Private in your browser</span><strong id="privacyState">Local-only</strong></div>
+    </section>
+
+    <footer class="footer">
+      <span>Built with ❤️ by RA Fahim · <a href="https://rafahim.com">rafahim.com</a> · © 2026 RA Fahim</span>
+      <span>Dhaka, Bangladesh · Web Developer &amp; Creator</span>
+    </footer>
+  </div>
+
+  <dialog class="modal" id="historyModal">
+    <div class="modal-head"><h2 data-i18n="savedVersions">Saved versions</h2><button class="icon-btn" data-close-modal="historyModal" type="button">×</button></div>
+    <div class="history-list" id="historyList"></div>
+  </dialog>
+
+  <dialog class="modal" id="cssModal">
+    <div class="modal-head"><h2 data-i18n="customCssTitle">Custom CSS</h2><button class="icon-btn" data-close-modal="cssModal" type="button">×</button></div>
+    <textarea id="customCssEditor" class="css-editor" spellcheck="false" placeholder=".resume-paper h1 { letter-spacing: -0.03em; }" aria-label="Custom CSS"></textarea>
+    <div class="modal-actions"><button class="ghost-btn" data-close-modal="cssModal" type="button" data-i18n="cancel">Cancel</button><button class="primary-btn" id="applyCssBtn" type="button" data-i18n="apply">Apply</button></div>
+  </dialog>
+
+  <dialog class="modal" id="exampleModal">
+    <div class="modal-head"><h2 data-i18n="chooseExample">Choose an example</h2><button class="icon-btn" data-close-modal="exampleModal" type="button">×</button></div>
+    <div class="example-grid">
+      <button class="example-card" data-example="classic" type="button"><strong>Classic</strong><span>Professional business CV</span></button>
+      <button class="example-card" data-example="modern" type="button"><strong>Modern</strong><span>Product, marketing, and design</span></button>
+      <button class="example-card" data-example="developer" type="button"><strong>Developer</strong><span>Engineering and full-stack focus</span></button>
+      <button class="example-card" data-example="minimal" type="button"><strong>Minimal</strong><span>Typography-first ATS layout</span></button>
+      <button class="example-card" data-example="twocolumn" type="button"><strong>Two-column</strong><span>Compact skills and experience</span></button>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
